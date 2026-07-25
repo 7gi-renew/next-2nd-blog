@@ -1,0 +1,33 @@
+name: test in git
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  git_flows:
+    name: Workflows
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+      MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+      MICROCMS_URL: ${{ secrets.MICROCMS_URL }}
+
+    steps:
+      - name: user-test-sample
+        uses: actions/checkout@v6
+
+      - name: node installation
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: npm install
+        run: npm install
+
+      - name: Vitest install
+        run: npm install --save-dev vitest
+
+      - name: auto test
+        run: npm run test
