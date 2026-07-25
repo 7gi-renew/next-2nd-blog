@@ -29,5 +29,8 @@ jobs:
       - name: Vitest install
         run: npm install --save-dev vitest
 
+      - name: Vitest install
+        run: npx playwright install
+
       - name: auto test
         run: npm run test
