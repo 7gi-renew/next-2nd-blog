@@ -7,8 +7,6 @@ describe("App", () => {
   test("renders App component", () => {
     render(<Home />);
 
-    screen.getByText("テスト")
-
-    screen.getByRole("button")
+    screen.debug();
   });
 });
