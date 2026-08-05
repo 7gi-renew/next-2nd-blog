@@ -1,7 +1,26 @@
 import Link from 'next/link';
 import { client } from '../../libs/client'
 
-export default async function page({ params }) {
+type Params = {
+  id: string,
+  title: string,
+  createdAt: string,
+  category: {
+    id: string,
+    title: string
+  }
+}
+
+type Cat = {
+  id: string,
+  title: string
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const { id } = await params;
 
   async function getBlogDetail() {
@@ -15,6 +34,9 @@ export default async function page({ params }) {
 
   const contents = await getBlogDetail()
 
+  // MEMO
+  // 8/5に実装した内容の把握・復習を8/6にやること。どうして実装できたか不明瞭な部分が多いため。
+
   return (
     <>
       <div>
@@ -25,7 +47,7 @@ export default async function page({ params }) {
           <p>カテゴリ</p>
           {contents.category.length != 0 ?
             <ul>
-              {contents.category.map((cat) => {
+              {contents.category.map((cat: Cat) => {
                 return (
                   <li key={cat.id}>
                     <p>{cat.title}</p>
