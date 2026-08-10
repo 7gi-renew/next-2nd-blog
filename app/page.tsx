@@ -2,7 +2,12 @@ import Link from 'next/link';
 import { client } from '../libs/client'
 import Image from 'next/image'
 
-type Props = {
+interface Cat {
+  id: string;
+  title: string
+}
+
+interface Props {
   id: string;
   title: string;
   thumbnail: {
@@ -10,11 +15,10 @@ type Props = {
     height: number;
     width: number;
   }
-  category: {
-    id: string;
-    title: string;
-  }
+  category: Cat[];
 }
+
+
 
 async function getBlogPosts(): Promise<Props[]> {
   const data = await client.get({
@@ -37,12 +41,24 @@ export default async function Home() {
         <div>
           {dataContents.map((item) => {
             return (
-              <Link href={`/posts/${item.id}/`} key={item.id}>
-                {item.thumbnail ?
-                  <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.width} alt=""></Image>
-                  : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
-                <p>{item.title}</p>
-              </Link>
+              <>
+                <Link href={`/posts/${item.id}/`} key={item.id}>
+                  {item.thumbnail ?
+                    <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.width} alt=""></Image>
+                    : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
+                  <p>{item.title}</p>
+                </Link>
+                {item.category.map((cat: Cat) => {
+                  return (
+                    <>
+                      <Link href={`/categories/${cat.id}`} key={cat.id}>
+                        <p>{cat.title}</p>
+                      </Link>
+                    </>
+                  )
+                })}
+              </>
+
             )
           })}
         </div>
