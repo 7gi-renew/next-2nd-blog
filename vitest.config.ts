@@ -3,7 +3,6 @@ import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  cacheComponents: true,
   plugins: [react()],
   test: {
     browser: {
