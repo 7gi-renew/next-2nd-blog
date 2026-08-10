@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { client } from '../../libs/client'
+import { notFound } from 'next/navigation';
 
 type Params = {
   id: string,
@@ -24,12 +25,16 @@ export default async function Page({
   const { id } = await params;
 
   async function getBlogDetail() {
-    const data = await client.get({
-      endpoint: 'blogs',
-      contentId: id,
-    });
+    try {
+      const data = await client.get({
+        endpoint: 'blogs',
+        contentId: id,
+      });
+      return data;
+    } catch {
+      notFound();
+    }
 
-    return data;
   }
 
   const contents = await getBlogDetail()
