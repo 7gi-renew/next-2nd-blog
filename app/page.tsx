@@ -37,7 +37,7 @@ export default async function Home() {
         <div>
           {dataContents.map((item) => {
             return (
-              <Link href={`/${item.id}/`} key={item.id}>
+              <Link href={`/posts/${item.id}/`} key={item.id}>
                 {item.thumbnail ?
                   <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.width} alt=""></Image>
                   : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
