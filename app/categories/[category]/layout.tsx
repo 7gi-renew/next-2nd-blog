@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../globals.css";
 import { notFound } from "next/navigation";
 import { client } from "@/libs/client";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default async function CategoryLayout({ params, children }: {
     <div>
       <p>{categories[0].title}の記事一覧</p>
       {children}
+      <Link href="/">トップに戻る</Link>
     </div>
   );
 }

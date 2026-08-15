@@ -60,7 +60,7 @@ export default async function Page({
             : ""}
         </div>
         <div>
-          <Link href="/">戻る</Link>
+          <Link href="/">トップに戻る</Link>
         </div>
       </div>
     </>
