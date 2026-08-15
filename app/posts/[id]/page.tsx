@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { client } from '../../../libs/client'
 import { notFound } from 'next/navigation';
 
-type Params = {
+interface Params {
   id: string,
   title: string,
   createdAt: string,
@@ -12,7 +12,7 @@ type Params = {
   }
 }
 
-type Cat = {
+interface Cat {
   id: string,
   title: string
 }
@@ -38,9 +38,6 @@ export default async function Page({
   }
 
   const contents = await getBlogDetail()
-
-  // MEMO
-  // 8/5に実装した内容の把握・復習を8/6にやること。どうして実装できたか不明瞭な部分が多いため。
 
   return (
     <>
