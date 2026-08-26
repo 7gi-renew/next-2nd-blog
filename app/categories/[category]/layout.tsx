@@ -46,6 +46,8 @@ export default async function CategoryLayout({ params, children }: {
 
   const categories = await getCategoryName();
 
+  console.log(categories)
+
   return (
     <div>
       <p>{categories[0].title}の記事一覧</p>
