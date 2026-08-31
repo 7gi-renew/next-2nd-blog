@@ -1,7 +1,5 @@
 import Cards from "@/components/Cards";
 import { client } from "@/libs/client";
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface Cat {

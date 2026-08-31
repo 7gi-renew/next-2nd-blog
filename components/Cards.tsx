@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Badge from './Badge';
 
 export interface Cat {
   id: string;
@@ -27,9 +28,7 @@ export default function Cards({ item }: { item: Props }) {
         <p>{item.title}</p>
       </Link>
       {item.category.map((cat) => (
-        <Link href={`/categories/${cat.id}`} key={cat.id}>
-          <p>{cat.title}</p>
-        </Link>
+        <Badge key={cat.id} cat={cat} />
       ))}
     </div>
   );
