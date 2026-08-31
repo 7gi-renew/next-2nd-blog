@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Badge from './Badge';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export interface Cat {
   id: string;
@@ -9,6 +15,7 @@ export interface Cat {
 
 export interface Props {
   id: string;
+  publishedAt: string;
   title: string;
   thumbnail: {
     url: string;
@@ -18,18 +25,26 @@ export interface Props {
   category: Cat[];
 }
 
+
 export default function Cards({ item }: { item: Props }) {
   return (
-    <div>
+    <article className='group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-neutral-300 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/10'>
       <Link href={`/posts/${item.id}/`}>
-        {item.thumbnail ?
-          <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.height} alt=""></Image>
-          : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
-        <p>{item.title}</p>
+        <div className='aspect-[7/3] w-full overflow-hidden bg-neutral-200'>
+          {item.thumbnail ?
+            <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.height} className='' alt=""></Image>
+            : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
+        </div>
       </Link>
-      {item.category.map((cat) => (
-        <Badge key={cat.id} cat={cat} />
-      ))}
-    </div>
+      <time>{dayjs.utc(item.publishedAt).tz('Asia/Tokyo').format('YYYY-MM-DD')}</time>
+      <div>
+        {item.category.map((cat) => (
+          <Badge key={cat.id} cat={cat} />
+        ))}
+      </div>
+      <div>
+        <time className='line-clamp-2 text-lg font-semibold leading-snug'>{item.title}</time>
+      </div>
+    </article>
   );
 }
