@@ -36,14 +36,14 @@ export default function Cards({ item }: { item: Props }) {
             : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
         </div>
       </Link>
-      <time>{dayjs.utc(item.publishedAt).tz('Asia/Tokyo').format('YYYY-MM-DD')}</time>
-      <div>
+      <time className='text-xs tracking-wide text-gray-500 px-[18px] pt-[18px]'>{dayjs.utc(item.publishedAt).tz('Asia/Tokyo').format('YYYY-MM-DD')}</time>
+      <div className='flex px-[18px] mt-2.5 gap-2'>
         {item.category.map((cat) => (
           <Badge key={cat.id} cat={cat} />
         ))}
       </div>
-      <div>
-        <time className='line-clamp-2 text-lg font-semibold leading-snug'>{item.title}</time>
+      <div className='flex px-[18px] mt-2.5 gap-2 pb-7'>
+        <h2 className='line-clamp-2 text-lg font-semibold leading-snug'>{item.title}</h2>
       </div>
     </article>
   );
