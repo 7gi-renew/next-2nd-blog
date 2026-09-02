@@ -1,10 +1,25 @@
-
+import { Box, Button, Flex, Popover } from "@radix-ui/themes";
+import CategoryAccordionInner from "./CategoryAccordionInner";
 
 export default function CategoryAccordion() {
   return (
-    <button type="button" id="desktop-cats-toggle" aria-expanded="false" className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent-700">
-      カテゴリ
-      <svg id="desktop-cats-chevron" className="h-3.5 w-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
+    <Popover.Root>
+      <Popover.Trigger>
+        <Button variant="soft">
+          カテゴリ
+        </Button>
+      </Popover.Trigger>
+      <Popover.Content width="360px">
+        <Flex gap="3">
+          <Box flexGrow="1">
+            <Flex gap="3" mt="3" justify="between">
+              <Flex align="center" gap="2" asChild>
+                <CategoryAccordionInner />
+              </Flex>
+            </Flex>
+          </Box>
+        </Flex>
+      </Popover.Content>
+    </Popover.Root>
   )
 }

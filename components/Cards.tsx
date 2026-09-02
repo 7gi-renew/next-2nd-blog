@@ -30,7 +30,7 @@ export default function Cards({ item }: { item: Props }) {
   return (
     <article className='group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-neutral-300 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/10'>
       <Link href={`/posts/${item.id}/`}>
-        <div className='aspect-[7/3] w-full overflow-hidden bg-neutral-200'>
+        <div className='aspect-[16/9] w-full overflow-hidden bg-neutral-200'>
           {item.thumbnail ?
             <Image src={item.thumbnail.url} width={item.thumbnail.width} height={item.thumbnail.height} className='' alt=""></Image>
             : <Image src="/images/noimage.jpg" width="960" height="540" alt=""></Image>}
