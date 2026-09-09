@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { client } from '../../../libs/client'
 import { notFound } from 'next/navigation';
+import BackButton from '@/components/BackButton';
 
 interface Params {
   id: string,
@@ -59,9 +60,7 @@ export default async function Page({
             </ul>
             : ""}
         </div>
-        <div>
-          <Link href="/">トップに戻る</Link>
-        </div>
+        <BackButton href={`/`} >トップに戻る</BackButton>
       </div>
     </>
   )

@@ -33,10 +33,8 @@ export default function RootLayout({
         <Theme className="flex flex-col">
           <Header />
           <main className="flex flex-col flex-1 items-center bg-zinc-50 font-sans flex flex-1">
-            <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-8 md:py-12">
-              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                {children}
-              </div>
+            <div className="mx-auto w-full max-w-6xl px-8 py-12 lg:px-4 lg:py-8" >
+              {children}
             </div>
           </main>
         </Theme>
