@@ -30,9 +30,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
       <body className="bg-white text-ink font-sans antialiased h-full antialiased flex flex-col">
-        <Theme>
+        <Theme className="flex flex-col">
           <Header />
-
           <main className="flex flex-col flex-1 items-center bg-zinc-50 font-sans flex flex-1">
             <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-8 md:py-12">
               <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
