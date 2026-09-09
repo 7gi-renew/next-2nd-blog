@@ -8,7 +8,7 @@ export interface Category {
 export default function Badge({ cat }: { cat: Category }) {
   return (
     <>
-      <Link href={`/categories/${cat.id}`} key={cat.id} className='self-start rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-amber-900 transition-colors hover:text-amber-600 hover:bg-red-50'>
+      <Link href={`/categories/${cat.id}`} key={cat.id} className='self-start rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-amber-900 transition-colors hover:text-amber-600'>
         {cat.title}
       </Link >
     </>
