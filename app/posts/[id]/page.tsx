@@ -69,7 +69,7 @@ export default async function Page({
               })}
             </ul>
             : ""}
-          <p className='mt-4 mb-2 text-2xl font-bold tracking-tight md:text-3xl'>タイトル：{contents.title}</p>
+          <p className='mt-2 mb-2 text-2xl font-bold tracking-tight md:text-3xl'>タイトル：{contents.title}</p>
           <p className='text-xs tracking-wide text-gray-500'>{dayjs.utc(contents.publishedAt).tz('Asia/Tokyo').format('YYYY-MM-DD')}</p>
         </div>
         {contents.thumbnail ?

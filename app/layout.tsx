@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Theme } from "@radix-ui/themes";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +33,12 @@ export default function RootLayout({
       <body className="bg-white text-ink font-sans antialiased h-full antialiased flex flex-col">
         <Theme className="flex flex-col">
           <Header />
-          <main className="flex flex-col flex-1 items-center bg-zinc-50 font-sans flex flex-1">
+          <main className="flex flex-col flex-1 items-center font-sans flex flex-1">
             <div className="mx-auto w-full max-w-6xl px-8 py-12 lg:px-4 lg:py-8" >
               {children}
             </div>
           </main>
+          <Footer />
         </Theme>
       </body>
     </html>
