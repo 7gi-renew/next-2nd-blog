@@ -8,6 +8,7 @@ import timezone from 'dayjs/plugin/timezone';
 import Image from 'next/image';
 import parse from 'html-react-parser';
 import DOMPurify from "isomorphic-dompurify";
+import { Metadata } from 'next';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -27,6 +28,29 @@ interface Cat {
   title: string
 }
 
+export const generateMetadata = async ({ params }: { params: { id: string } }): Promise<Metadata> => {
+  const { id } = await params;
+
+  async function getBlogDetail() {
+    try {
+      const data = await client.get({
+        endpoint: 'blogs',
+        contentId: id,
+      });
+      return data;
+    } catch {
+      console.log("idが存在しません");
+    }
+  }
+
+  const contents = await getBlogDetail();
+
+  return {
+    title: `${contents.title} | My Blog`,
+    description: `${contents.description}`,
+  };
+}
+
 export default async function Page({
   params,
 }: {
@@ -44,7 +68,6 @@ export default async function Page({
     } catch {
       notFound();
     }
-
   }
 
   const contents = await getBlogDetail();

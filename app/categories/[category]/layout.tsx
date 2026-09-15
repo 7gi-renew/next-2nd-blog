@@ -2,9 +2,36 @@ import "../../globals.css";
 import { notFound } from "next/navigation";
 import { client } from "@/libs/client";
 import BackButton from "@/components/BackButton";
+import { Metadata } from "next";
 
 interface Category {
   category: string,
+}
+
+export const generateMetadata = async ({ params }: { params: Promise<Category> }): Promise<Metadata> => {
+  const { category } = await params;
+
+  async function getBlogDetail() {
+    try {
+      const data = await client.get({
+        endpoint: 'category',
+        queries: {
+          filters: `id[contains]${category}`,
+        },
+      });
+      return data.contents;
+    } catch {
+      console.log("カテゴリが存在しません");
+    }
+  }
+
+  const contents = await getBlogDetail();
+  const firstContents = contents[0];
+
+  return {
+    title: `${firstContents.title}の記事一覧 | My Blog`,
+    description: `${firstContents.description}`,
+  };
 }
 
 export default async function CategoryLayout({ params, children }: {
