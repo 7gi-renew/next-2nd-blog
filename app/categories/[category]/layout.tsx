@@ -47,6 +47,9 @@ export default async function CategoryLayout({ params, children }: {
         queries: {
           filters: `id[contains]${category}`,
         },
+        customRequestInit: {
+          next: { tags: ['category'] },
+        },
       });
       return data.contents;
     } catch {

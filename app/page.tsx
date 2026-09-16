@@ -6,6 +6,9 @@ async function getBlogPosts(): Promise<Props[]> {
     endpoint: 'blogs',
     queries: {
       limit: 10,
+    },
+    customRequestInit: {
+      next: { tags: ['blogs'] },
     }
   });
 

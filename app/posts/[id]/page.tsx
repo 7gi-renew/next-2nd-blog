@@ -63,6 +63,9 @@ export default async function Page({
       const data = await client.get({
         endpoint: 'blogs',
         contentId: id,
+        customRequestInit: {
+          next: { tags: ['blogs'] },
+        },
       });
       return data;
     } catch {

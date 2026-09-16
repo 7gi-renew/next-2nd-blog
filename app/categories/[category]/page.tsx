@@ -29,6 +29,9 @@ export default async function Page({ params }: { params: Promise<Params>; }) {
         queries: {
           filters: `category[contains]${category}`,
         },
+        customRequestInit: {
+          next: { tags: ['blogs'] },
+        },
       });
       return data.contents;
     } catch {
