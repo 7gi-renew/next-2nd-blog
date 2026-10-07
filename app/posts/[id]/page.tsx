@@ -75,7 +75,6 @@ export default async function Page({
 
   const contents = await getBlogDetail();
 
-  console.log(contents);
   const ParserSanitizedBody = (text: string) => {
     const sanitizedElem = DOMPurify.sanitize(text)
 
